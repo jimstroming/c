@@ -57,6 +57,20 @@ void print_list(list *l)
     return print_list(l->next);
 }
 
+void print_list_backward_from_tail(list *l)
+{
+     if (l == NULL){
+        printf("\n");
+        printf("Done printing the list backward\n");
+        return;
+    }
+    printf("%p\n", (void *) l);    
+    printf("%d",l->item);
+    printf("\n");   
+    return print_list_backward_from_tail(l->prev);
+
+}
+
 list *predecessor_list(list *l, int x)
 {
     //printf("Get predecessor\n");
@@ -115,10 +129,16 @@ void main()
     printf("%p\n", (void *) SevenNode);  
     SevenNode = search_list(ListHead, 4);
     printf("%p\n", (void *) SevenNode);   
-    
+    SevenNode = search_list(ListHead, 7);    
+        
     /* Print the list */
     printf("Lets print the list forward\n");
     print_list(ListHead);   
+    
+    /* Print the list backward */
+    printf("Lets print the list backward\n");
+    print_list_backward_from_tail(SevenNode);   
+    
     
     /* Delete a node */
     delete_list(&ListHead, 4);  
