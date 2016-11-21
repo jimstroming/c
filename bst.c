@@ -39,7 +39,26 @@ insert_tree(tree **l, int x, tree *parent)
 }
 
 
+void print_tree(tree *l)
+{
+    if (l != NULL){
+        print_tree(l->left);
+        printf("%d",l->item);
+        printf("\n");
+        print_tree(l->right);
+    }
+}
+
 void main()
 {
+
+    tree *MyTree = NULL;
+
+    
+    insert_tree(&MyTree, 7, NULL);
+    insert_tree(&MyTree, 14, NULL);
+    insert_tree(&MyTree, 3, NULL);
+
+    print_tree(MyTree);
 
 }
