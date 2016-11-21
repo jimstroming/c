@@ -43,6 +43,9 @@ delete_tree(tree **l, int x, tree *parent)
 {
     tree *p;                       /* temporary pointer */
     
+    if (*l == NULL) 
+        return;     /* nothing to delete */
+    
     if ((*l)->item == x) {      /* found the node */
 
         int numberchildren = 2;    /* check how man children the node has */  
@@ -111,7 +114,8 @@ void main()
     delete_tree(&MyTree, 12, NULL);
     delete_tree(&MyTree, 0, NULL);
     delete_tree(&MyTree, 1, NULL);
-
+    delete_tree(&MyTree, 5, NULL);
+ 
 
     print_tree(MyTree);
     
