@@ -39,6 +39,31 @@ insert_tree(tree **l, int x, tree *parent)
 }
 
 
+delete_tree(tree **l, int x, tree *parent)
+{
+    tree *p;                       /* temporary pointer */
+    
+    if ((*l)->item == x) {      /* found the node */
+
+        int numberchildren = 2;    /* check how man children the node has */  
+        if ((*l)->right == NULL)
+            numberchildren -= 1;
+        if ((*l)->left == NULL)
+            numberchildren -= 1;
+        
+        
+        
+        
+        return;                              
+    
+    }
+
+    if (x < (*l)->item)
+        delete_tree(&((*l)->left), x, *l);
+    else
+        delete_tree(&((*l)->right), x, *l);        
+}
+
 tree *search_tree(tree *l, int x)
 {
     if (l == NULL) return(NULL);
