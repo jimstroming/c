@@ -39,6 +39,16 @@ insert_tree(tree **l, int x, tree *parent)
 }
 
 
+tree *search_tree(tree *l, int x)
+{
+    if (l == NULL) return(NULL);
+    if (l->item == x) return(l);
+    if (x < l->item)
+        return (search_tree(l->left, x));
+    else
+        return (search_tree(l->right, x));
+}
+
 void print_tree(tree *l)
 {
     if (l != NULL){
@@ -69,5 +79,10 @@ void main()
 
 
     print_tree(MyTree);
+    
+    printf("Search for node 9999\n");
+    tree *node9999 = search_tree(MyTree, 9999);
+    printf("%d",node9999->item); 
+    printf("\n");
 
 }
