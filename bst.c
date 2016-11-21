@@ -51,8 +51,15 @@ delete_tree(tree **l, int x, tree *parent)
         if ((*l)->left == NULL)
             numberchildren -= 1;
         
+        if (numberchildren == 0){  /* zero children, find the parent pointer */
+            if ((*l)-> item < parent->item)
+                parent->left = NULL;  /* and set it to NULL */
+            else
+                parent->right = NULL; 
+            free(*l);              /* free the memory allocated for the node */        
+        }
         
-        
+
         
         return;                              
     
@@ -101,6 +108,9 @@ void main()
     insert_tree(&MyTree, 12, NULL);
     insert_tree(&MyTree, 0, NULL);
     insert_tree(&MyTree, 9998, NULL);
+    delete_tree(&MyTree, 12, NULL);
+    delete_tree(&MyTree, 0, NULL);
+    delete_tree(&MyTree, 1, NULL);
 
 
     print_tree(MyTree);
