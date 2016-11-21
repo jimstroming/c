@@ -50,7 +50,7 @@ void print_list(list *l)
 
 list *predecessor_list(list *l, int x)
 {
-    printf("Get predecessor\n");
+    //printf("Get predecessor\n");
     if ((l == NULL ) || (l->next == NULL)){
         // predecessor sought on null list
         return(NULL);    
@@ -84,20 +84,21 @@ void main()
 {
 
     struct list MyList;
-    MyList.item = 7;
-    MyList.next = NULL;
+
     printf("Hello, World\n");
-    list *ListHead = &MyList; 
+    list *ListHead = NULL; 
     
-    /* Print the list */
+    /* Print the empty list */
     printf("Lets print the list \n");
     print_list(ListHead);   
 
     /* Insert a couple of nodes */
+    insert_list(&ListHead, 7);    
     insert_list(&ListHead, 6);
     insert_list(&ListHead, 4);
         
     /* Try searching the list */
+    printf("Try searching the list \n");
     list *SevenNode = search_list(ListHead, 7);
     SevenNode = search_list(ListHead, 7);    
     printf("%p\n", (void *) SevenNode);
