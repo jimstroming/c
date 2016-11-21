@@ -44,6 +44,13 @@ list *search_list(list *l, int x)
         return(search_list(l->next, x));
 }
 
+list *find_tail(list *l)
+{
+    if (l == NULL) return(NULL);
+    if (l->next == NULL) return(l);
+    return find_tail(l->next);
+}
+
 void print_list(list *l)
 {
     if (l == NULL){
@@ -129,7 +136,8 @@ void main()
     printf("%p\n", (void *) SevenNode);  
     SevenNode = search_list(ListHead, 4);
     printf("%p\n", (void *) SevenNode);   
-    SevenNode = search_list(ListHead, 7);    
+    SevenNode = search_list(ListHead, 7); 
+    list *LastNode = find_tail(ListHead);   
         
     /* Print the list */
     printf("Lets print the list forward\n");
@@ -137,7 +145,7 @@ void main()
     
     /* Print the list backward */
     printf("Lets print the list backward\n");
-    print_list_backward_from_tail(SevenNode);   
+    print_list_backward_from_tail(LastNode);   
     
     
     /* Delete a node */
