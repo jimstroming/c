@@ -38,15 +38,26 @@ list *search_list(list *l, int x)
 
 void print_list(list *l)
 {
-    if (l == NULL)
-    {
+    if (l == NULL){
         printf("\n");
         return;
     }
     printf("%d",l->item);
     
     return print_list(l->next);
+}
+
+list *predecessor_list(list *l, int x)
+{
+    if ((l == NULL ) || (l->next == NULL)){
+        // predecessor sought on null list
+        return(NULL);    
+    }
     
+    if ((l->next)->item == x)
+        return(l);
+    else
+        return(predecessor_list(l->next,x));
 }
 
 void main()
@@ -58,11 +69,11 @@ void main()
     printf("Hello, World\n");
     list *ListHead = &MyList; 
 
-    /* Lets insert a couple of nodes */
+    /* Insert a couple of nodes */
     insert_list(&ListHead, 6);
     insert_list(&ListHead, 4);
         
-    /* Lets try searching the list */
+    /* Try searching the list */
     list *SevenNode = search_list(ListHead, 7);
     SevenNode = search_list(ListHead, 7);    
     printf("%p\n", (void *) SevenNode);
@@ -71,7 +82,10 @@ void main()
     SevenNode = search_list(ListHead, 4);
     printf("%p\n", (void *) SevenNode);   
     
-    /* Lets print the list */
+    /* Print the list */
     printf("Lets print the list \n");
-    print_list(ListHead);     
+    print_list(ListHead);   
+    
+    /* Delete a node */
+     
 }
