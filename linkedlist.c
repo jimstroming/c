@@ -42,13 +42,15 @@ void print_list(list *l)
         printf("\n");
         return;
     }
+    printf("%p\n", (void *) l);    
     printf("%d",l->item);
-    
+    printf("\n");   
     return print_list(l->next);
 }
 
 list *predecessor_list(list *l, int x)
 {
+    printf("Get predecessor\n");
     if ((l == NULL ) || (l->next == NULL)){
         // predecessor sought on null list
         return(NULL);    
@@ -60,6 +62,24 @@ list *predecessor_list(list *l, int x)
         return(predecessor_list(l->next,x));
 }
 
+delete_list(list **l, int x)
+{
+    list *p;            /* item pointer */
+    list *pred;         /* predecessor pointer */
+    list *search_list(), *predecessor_list();
+    
+    p = search_list(*l,x);
+    if (p != NULL) {
+        pred = predecessor_list(*l,x);
+        if (pred == NULL)    /* splice out of list */
+            *l = p->next;
+        else
+            pred->next = p->next;
+        printf("Free p\n");
+        free(p);          /* free memory used by node */    
+    }
+}
+
 void main()
 {
 
@@ -68,6 +88,10 @@ void main()
     MyList.next = NULL;
     printf("Hello, World\n");
     list *ListHead = &MyList; 
+    
+    /* Print the list */
+    printf("Lets print the list \n");
+    print_list(ListHead);   
 
     /* Insert a couple of nodes */
     insert_list(&ListHead, 6);
@@ -87,5 +111,11 @@ void main()
     print_list(ListHead);   
     
     /* Delete a node */
-     
+    delete_list(&ListHead, 4);  
+    print_list(ListHead);  
+    printf("Delete node 7\n");
+    delete_list(&ListHead, 7);
+    printf("Deleted node 7\n");
+    print_list(ListHead);    
+           
 }
