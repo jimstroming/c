@@ -79,6 +79,39 @@ delete_list(list **l, int x)
         free(p);          /* free memory used by node */    
     }
 }
+ 
+ 
+list *reverse_node(list *l, list *lastnode)
+{
+    printf("Reverse the node\n");
+    printf("%d",l->item);
+    printf(", ");
+    if (lastnode != NULL){
+        printf("%d",lastnode->item);
+    }
+    printf("\n");
+    if (l == NULL)
+        return(NULL);
+    list *nextnode = l->next;
+    l->next = lastnode;
+    if (nextnode == NULL) {
+        printf("Return l\n");
+        return(l);  
+    }    
+    return reverse_node(nextnode, l);  
+      
+}        
+
+reverse_list(list **l)
+{
+    /* Reverses the direction of linked list pointed to by l */
+    list *newhead;
+    newhead = reverse_node(*l, NULL);
+    printf("Got newhead\n");
+    *l = newhead;
+    printf("Assigned l\n");
+
+}
 
 void main()
 {
@@ -109,7 +142,16 @@ void main()
     
     /* Print the list */
     printf("Lets print the list \n");
-    print_list(ListHead);   
+    print_list(ListHead);  
+    
+    /* Reverse the list */
+    printf("Reverse the list \n");
+    reverse_list(&ListHead); 
+    
+    /* Print the list */
+    printf("Lets print the list \n");
+    print_list(ListHead);  
+    
     
     /* Delete a node */
     delete_list(&ListHead, 4);  
