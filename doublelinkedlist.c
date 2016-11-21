@@ -98,7 +98,7 @@ void main()
     list *ListHead = NULL; 
     
     /* Print the empty list */
-    printf("Lets print the list \n");
+    printf("Lets print the list forward\n");
     print_list(ListHead);   
 
     /* Insert a couple of nodes */
@@ -117,7 +117,7 @@ void main()
     printf("%p\n", (void *) SevenNode);   
     
     /* Print the list */
-    printf("Lets print the list \n");
+    printf("Lets print the list forward\n");
     print_list(ListHead);   
     
     /* Delete a node */
