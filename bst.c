@@ -58,6 +58,15 @@ void main()
     insert_tree(&MyTree, 7, NULL);
     insert_tree(&MyTree, 14, NULL);
     insert_tree(&MyTree, 3, NULL);
+    insert_tree(&MyTree, 2, NULL);
+    insert_tree(&MyTree, 1, NULL);
+    insert_tree(&MyTree, 10000, NULL);
+    insert_tree(&MyTree, 10001, NULL);
+    insert_tree(&MyTree, 9999, NULL);
+    insert_tree(&MyTree, 12, NULL);
+    insert_tree(&MyTree, 0, NULL);
+    insert_tree(&MyTree, 9998, NULL);
+
 
     print_tree(MyTree);
 
