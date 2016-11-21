@@ -20,12 +20,15 @@ typedef struct list {
 void insert_list(list **l, int x)
 {
     list *p;   /* temporary pointer */
+    list *nextnode;
        
     p = malloc( sizeof(list) );
     p->item = x;
     p->next = *l;
     printf("Set the previous\n");
-    (p->next)->prev = p;
+    nextnode = p->next;
+    if (nextnode != NULL)
+        nextnode->prev = p;
     printf("Done setting the previous\n");
     p->prev = NULL;
     *l = p;
