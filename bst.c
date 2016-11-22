@@ -84,6 +84,36 @@ delete_tree(tree **l, int x, tree *parent)
                 printf("If case\n");
                 if ((*l)->right == NULL){
                     printf("Left Left case\n");
+                    printf("l is at \n");
+                    printf("%p\n", (void *) l);                    
+                    printf("*l is at \n");
+                    printf("%p\n", (void *) (*l));                    
+                    printf("*l->item is at \n");
+                    printf("%p\n", (void *) &((*l)->item));                    
+                    printf("*l->parent is at \n");
+                    printf("%p\n", (void *) &((*l)->parent));                    
+                    printf("*l->left is at \n");
+                    printf("%p\n", (void *) &((*l)->left));                    
+                    printf("*l->right is at \n");
+                    printf("%p\n", (void *) &((*l)->right));                    
+                    
+                    printf("parent is at \n");
+                    printf("%p\n", (void *) parent); 
+                    printf("parent->item is at \n");
+                    printf("%p\n", (void *) &(parent->item));                                                           
+                    printf("parent->left is at \n");
+                    printf("%p\n", (void *) &(parent->left));                    
+                    printf("parent->right is at \n");
+                    printf("%p\n", (void *) &(parent->right));                    
+                    
+                    printf("*l->left points to \n");
+                    printf("%p\n", (void *) ((*l)->left));                     
+                    printf("(*l)->left->item is at \n");
+                    printf("%p\n", (void *) &((*l)->left->item));                     
+                    printf("(*l)->left->left is at \n");
+                    printf("%p\n", (void *) &((*l)->left->left));  
+                    printf("(*l)->left->right is at \n");
+                    printf("%p\n", (void *) &((*l)->left->right));                                          
                     printf("l is ");
                     printf("%d",(*l)->item);
                     printf("\n");        
