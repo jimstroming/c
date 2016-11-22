@@ -18,6 +18,17 @@ typedef struct tree {
 
 }   tree;
 
+void print_tree(tree *l)
+{
+    if (l != NULL){
+        print_tree(l->left);
+        printf("%d",l->item);
+        printf("\n");
+        print_tree(l->right);
+    }
+}
+
+
 
 insert_tree(tree **l, int x, tree *parent)
 {
@@ -73,13 +84,34 @@ delete_tree(tree **l, int x, tree *parent)
                 printf("If case\n");
                 if ((*l)->right == NULL){
                     printf("Left Left case\n");
-                    parent->left = (*l)->left;
+                    printf("l is ");
+                    printf("%d",(*l)->item);
+                    printf("\n");        
+                    printf("parent is ");
+                    printf("%d",parent->item);
+                    printf("\n");                            
+                                        
+                    print_tree(*l);  
+                                     
+                    
+                    //parent->left = (*l)->left;
+                    tree *kid =  (*l)->left;
+                    parent->left = kid;
+                    printf("l is ");
+                    printf("%d",(*l)->item);  
+                    printf("\n");                                     
+                    printf("Kid is ");
+                    printf("\n");
+                    printf("%d",kid->item);
+                    printf("\n");                    
+                    print_tree(*l);                      
                     if (parent->left == NULL)
                         printf("parent left is now NULL\n");  
                     printf("Parent left is now ");
                     printf("%d", parent->left->item);
                     printf("\n");                      
                     printf("Now set the left node parent\n");
+                    print_tree(*l);                       
                     printf("Parent is ");
                     printf("%d",parent->item);
                     printf("\n");
@@ -90,6 +122,10 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("\n");
                     child->parent = parent;
                     printf("Left node parent set\n");
+                    printf("child parent is now ");
+                    printf("%d",child->parent->item);
+                    printf("\n");
+                    print_tree(*l);                       
                 }
                 else{
                     printf("Right Right case\n");
@@ -109,7 +145,11 @@ delete_tree(tree **l, int x, tree *parent)
                     ((*l)->right)->parent = parent;
                 }
             }
-            printf("Not free the node\n");
+            
+            
+            print_tree(*l);
+            
+            printf("Now free the node\n");
             free(*l);
             return;
             
@@ -137,15 +177,6 @@ tree *search_tree(tree *l, int x)
         return (search_tree(l->right, x));
 }
 
-void print_tree(tree *l)
-{
-    if (l != NULL){
-        print_tree(l->left);
-        printf("%d",l->item);
-        printf("\n");
-        print_tree(l->right);
-    }
-}
 
 void main()
 {
@@ -164,10 +195,10 @@ void main()
     insert_tree(&MyTree, 12, NULL);
     insert_tree(&MyTree, 0, NULL);
     insert_tree(&MyTree, 9998, NULL);
-    delete_tree(&MyTree, 12, NULL);
-    delete_tree(&MyTree, 0, NULL);
-    delete_tree(&MyTree, 1, NULL);
-    delete_tree(&MyTree, 5, NULL);
+    //delete_tree(&MyTree, 12, NULL);
+    //delete_tree(&MyTree, 0, NULL);
+    //delete_tree(&MyTree, 1, NULL);
+    //delete_tree(&MyTree, 5, NULL);
     printf("Delete node 3\n");
     delete_tree(&MyTree, 3, NULL);
 
