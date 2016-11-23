@@ -9,24 +9,27 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct list {
-    int item;                   /* data item */
+    char item[100];             /* data item.  100 character long words */
     struct list *next;          /* point to successor */
 } list;
 
 
-void insert_list(list **l, int x)
+void insert_list(list **l, char* x)
 {
     list *p;   /* temporary pointer */
        
     p = malloc( sizeof(list) );
-    p->item = x;
+    strcpy(p->item, x);
+    //p->item = x;
     p->next = *l;
     *l = p;
 }
 
-list *search_list(list *l, int x)
+/*
+list *search_list(list *l, char *x)
 {
     if (l == NULL) return (NULL);
     
@@ -48,7 +51,7 @@ void print_list(list *l)
     return print_list(l->next);
 }
 
-list *predecessor_list(list *l, int x)
+list *predecessor_list(list *l, char *x)
 {
     //printf("Get predecessor\n");
     if ((l == NULL ) || (l->next == NULL)){
@@ -62,21 +65,24 @@ list *predecessor_list(list *l, int x)
         return(predecessor_list(l->next,x));
 }
 
-delete_list(list **l, int x)
+*/
+
+/*
+delete_list(list **l, char *x)
 {
-    list *p;            /* item pointer */
-    list *pred;         /* predecessor pointer */
+    list *p;            
+    list *pred;        
     list *search_list(), *predecessor_list();
     
     p = search_list(*l,x);
     if (p != NULL) {
         pred = predecessor_list(*l,x);
-        if (pred == NULL)    /* splice out of list */
+        if (pred == NULL)  
             *l = p->next;
         else
             pred->next = p->next;
         printf("Free p\n");
-        free(p);          /* free memory used by node */    
+        free(p);            
     }
 }
  
@@ -101,10 +107,11 @@ list *reverse_node(list *l, list *lastnode)
     return reverse_node(nextnode, l);  
       
 }        
+*/
 
+/*
 reverse_list(list **l)
 {
-    /* Reverses the direction of linked list pointed to by l */
     list *newhead;
     newhead = reverse_node(*l, NULL);
     printf("Got newhead\n");
@@ -112,6 +119,7 @@ reverse_list(list **l)
     printf("Assigned l\n");
 
 }
+*/
 
 void main()
 {
@@ -122,15 +130,24 @@ void main()
     list *ListHead = NULL; 
     
     /* Print the empty list */
+    /*
     printf("Lets print the list \n");
     print_list(ListHead);   
+    */
+
+    char batman[] = "Batman";
+    char robin[] = "Robin";
+    char joker[] = "Joker";
+
 
     /* Insert a couple of nodes */
-    insert_list(&ListHead, 7);    
-    insert_list(&ListHead, 6);
-    insert_list(&ListHead, 4);
+    insert_list(&ListHead, batman);    
+     
+     
         
     /* Try searching the list */
+    
+    /*
     printf("Try searching the list \n");
     list *SevenNode = search_list(ListHead, 7);
     SevenNode = search_list(ListHead, 7);    
@@ -139,26 +156,34 @@ void main()
     printf("%p\n", (void *) SevenNode);  
     SevenNode = search_list(ListHead, 4);
     printf("%p\n", (void *) SevenNode);   
+    */
     
     /* Print the list */
+    
+    /*
     printf("Lets print the list \n");
     print_list(ListHead);  
+    */
     
     /* Reverse the list */
+    /*
     printf("Reverse the list \n");
     reverse_list(&ListHead); 
+    */
     
     /* Print the list */
+    /*
     printf("Lets print the list \n");
     print_list(ListHead);  
-    
+    */
     
     /* Delete a node */
+    /*
     delete_list(&ListHead, 4);  
     print_list(ListHead);  
     printf("Delete node 7\n");
     delete_list(&ListHead, 7);
     printf("Deleted node 7\n");
     print_list(ListHead);    
-           
+    */       
 }
