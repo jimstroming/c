@@ -89,8 +89,10 @@ delete_tree(tree **l, int x, tree *parent)
                 if ((*l)->right == NULL){
                     printf("Left Left case\n");
                     printf("l is at \n");
-                    printf("%p\n", (void *) l);                    
-                    printf("*l is at \n");
+                    printf("%p\n", (void *) &l);   
+                    printf("l points to \n");
+                    printf("%p\n", (void *) l);                     
+                    printf("*l points to \n");
                     printf("%p\n", (void *) (*l));                    
                     printf("*l->item is at \n");
                     printf("%p\n", (void *) &((*l)->item));                    
@@ -102,7 +104,11 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("%p\n", (void *) &((*l)->right));                    
                     
                     printf("parent is at \n");
+                    printf("%p\n", (void *) &parent); 
+                    printf("parent points to \n");
                     printf("%p\n", (void *) parent); 
+                    
+                    
                     printf("parent->item is at \n");
                     printf("%p\n", (void *) &(parent->item));                                                           
                     printf("parent->left is at \n");
@@ -132,11 +138,13 @@ delete_tree(tree **l, int x, tree *parent)
                     
                     //parent->left = (*l)->left;
                     tree *kid =  (*l)->left; 
-                    
                     printf("l is at \n");
-                    printf("%p\n", (void *) l);                    
-                    printf("*l is at \n");
-                    printf("%p\n", (void *) (*l));                                  
+                    printf("%p\n", (void *) &l);   
+                    printf("l points to \n");
+                    printf("%p\n", (void *) l);                     
+                    printf("*l points to \n");
+                    printf("%p\n", (void *) (*l));  
+                                                                       
                     printf("*l->left is at \n");
                     printf("%p\n", (void *) &((*l)->left));                        
                     printf("*l->left points to \n");
@@ -146,6 +154,12 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("%p\n", (void *) &kid);                        
                     printf("kid points to \n");
                     printf("%p\n", (void *) kid); 
+         
+                    printf("parent is at \n");
+                    printf("%p\n", (void *) &parent); 
+                    printf("parent points to \n");
+                    printf("%p\n", (void *) parent);         
+         
                                           
                     
                     parent->left = kid;
@@ -154,9 +168,11 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("\n");
                     
                     printf("l is at \n");
-                    printf("%p\n", (void *) l);                    
-                    printf("*l is at \n");
-                    printf("%p\n", (void *) (*l));                                                      
+                    printf("%p\n", (void *) &l);   
+                    printf("l points to \n");
+                    printf("%p\n", (void *) l);                     
+                    printf("*l points to \n");
+                    printf("%p\n", (void *) (*l));  
                     printf("*l->left is at \n");
                     printf("%p\n", (void *) &((*l)->left));                      
                     printf("*l->left points to \n");
@@ -248,8 +264,21 @@ void main()
 {
 
     tree *MyTree = NULL;
+    printf("MyTree is at \n");
+    printf("%p\n", (void *) &MyTree);   
+    printf("MyTree points to \n");
+    printf("%p\n", (void *) MyTree); 
 
     insert_tree(&MyTree, 7, NULL);
+    
+    printf("MyTree is at \n");
+    printf("%p\n", (void *) &MyTree);   
+    printf("MyTree points to \n");
+    printf("%p\n", (void *) MyTree); 
+   
+    
+    
+    
     insert_tree(&MyTree, 14, NULL);
     insert_tree(&MyTree, 3, NULL);
     insert_tree(&MyTree, 2, NULL);
