@@ -116,7 +116,7 @@ reverse_list(list **l)
 }
 
 
-void main()
+void oldmain()
 {
 
     struct list MyList;
@@ -169,4 +169,33 @@ void main()
     printf("Deleted Batman\n");
     print_list(ListHead);    
            
+}
+
+
+int main()
+{
+    struct list MyList;
+
+    printf("Hello, World\n");
+    list *ListHead = NULL; 
+    
+		FILE *ptr_file;
+		int x;
+
+		ptr_file =fopen("mobydick_excerpt.txt", "r");
+
+		if (!ptr_file)
+			return 1;
+      
+    char name[10000];  
+    while(fgets(name,10000,ptr_file) != NULL){
+        printf("%s",name);
+    
+    
+    }  
+
+        
+    fclose(ptr_file);
+    return 0;    
+
 }
