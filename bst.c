@@ -34,9 +34,6 @@ insert_tree(tree **l, int x, tree *parent)
 {
     tree *p;                       /* temporary pointer */
     
-    printf("Inserting node ");
-    printf("%d", x);
-    printf("\n");
     if (*l == NULL) {
         p = malloc(sizeof(tree));  /* allocate new node */
         printf("%p\n", (void *) p);  
@@ -70,21 +67,7 @@ tree *find_minimum(tree *t)
 delete_tree(tree **l, int x, tree *parent)
 {
     tree *p;                       /* temporary pointer */
-    printf("\n");
-    printf("delete_tree\n");
-
-    printf("l is at \n");
-    printf("%p\n", (void *) &l);      
-    printf("l points to \n");
-    printf("%p\n", (void *) l); 
-    printf("*l points to \n");
-    printf("%p\n", (void *) (*l)); 
-    
-               
-    printf("parent points to \n");
-    printf("%p\n", (void *) parent);     
-    
-    
+  
     if (*l == NULL) 
         return;     /* nothing to delete */
     
@@ -92,23 +75,12 @@ delete_tree(tree **l, int x, tree *parent)
 
         int numberchildren = 2;    /* check how man children the node has */  
         if ((*l)->right == NULL){
-            printf("no right child\n");
             numberchildren -= 1;
         }
         if ((*l)->left == NULL){
-            printf("no left child\n");
             numberchildren -= 1;
         }
-        if (numberchildren == 0){  /* zero children, find the parent pointer */
-            printf("No child case.\n");
-            printf("l points to \n");
-            printf("%p\n", (void *) l);
-            printf("*l points to \n");
-            printf("%p\n", (void *) *l); 
-            printf("parent->left IS AT \n");
-            printf("%p\n", (void *) &(parent->left));                     
-            printf("parent->left points to \n");
-            printf("%p\n", (void *) parent->left);                    
+        if (numberchildren == 0){  /* zero children, find the parent pointer */                  
             
             free(*l);              /* free the memory allocated for the node */
             *l = NULL;          
@@ -116,31 +88,14 @@ delete_tree(tree **l, int x, tree *parent)
         }
         
         if (numberchildren == 1){ /* one child, connect the parent and child */
-            printf("One child case.\n");
             p = *l;            
 
             if ((*l)->right == NULL){
-                printf("Left case\n");
-                printf("l is at \n");
-                printf("%p\n", (void *) &l);   
-                printf("l points to \n");
-                printf("%p\n", (void *) l);                     
-                printf("*l points to \n");
-                printf("%p\n", (void *) (*l));                    
-                printf("*l->item is at \n");
-                printf("%p\n", (void *) &((*l)->item));                    
-                printf("*l->parent is at \n");
-                printf("%p\n", (void *) &((*l)->parent));                    
-                printf("*l->left is at \n");
-                printf("%p\n", (void *) &((*l)->left));                    
-                printf("*l->right is at \n");
-                printf("%p\n", (void *) &((*l)->right));                    
-                                                            
+                                                                             
                 ((*l)->left)->parent = parent;
                 *l = (*l)->left;                 
             }
             else{
-                printf("Right case\n");
                 ((*l)->right)->parent = parent;
                 *l = (*l)->right;
             }
@@ -222,17 +177,14 @@ void main()
     printf("%p\n", (void *) MyTree);     
     
     
-    //delete_tree(&MyTree, 12, NULL);
+    delete_tree(&MyTree, 12, NULL);
 
-    //printf("Delete node 3\n");
-    //delete_tree(&MyTree, 3, NULL);
-    //delete_tree(&MyTree, 14, NULL);
-    //delete_tree(&MyTree, 0, NULL);
-    //delete_tree(&MyTree, 1, NULL);
-    //delete_tree(&MyTree, 2, NULL);    
+    delete_tree(&MyTree, 3, NULL);
+    delete_tree(&MyTree, 14, NULL);
+    delete_tree(&MyTree, 0, NULL);
+    delete_tree(&MyTree, 1, NULL);
     delete_tree(&MyTree, 7, NULL);  
         
-    print_tree(MyTree);
    
     delete_tree(&MyTree, 10000, NULL);  
         
