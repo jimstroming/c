@@ -31,9 +31,8 @@ void insert_list(list **l, char* x)
 
 list *search_list(list *l, char *x)
 {
-    printf("Call search_list\n");
+    //printf("Call search_list\n");
     if (l == NULL) return (NULL);
-    
     if (strcmp(l->item,x) == 0)
         return(l);
     else
@@ -176,17 +175,17 @@ int main()
 {
     struct list MyList;
 
-    printf("Hello, World\n");
     list *ListHead = NULL; 
+    list *SearchNode = NULL;
     
 		FILE *ptr_file;
 		int x, i;
     int isaword = 0;
     
-    const char s[100]= ",;. ";
+    const char s[100]= ",:;. —-\"”“!?()";
     char *token;
 
-		ptr_file =fopen("mobydick_excerpt.txt", "r");
+		ptr_file =fopen("mobydick.txt", "r");
     
 
 
@@ -216,13 +215,24 @@ int main()
                 {
                     isaword = 1;
                 }
+                
+                if(isspace(token[i]))
+                {
+                    token[i] = 0;
+                }
         
                 i = i+1;
             }
             
             if (isaword == 1)
             {
-                printf("%s\n", token);
+                SearchNode =  search_list(ListHead, token);
+                //printf("Came out of the search\n");
+                if (SearchNode == NULL)
+                {
+                    insert_list(&ListHead,token); 
+                    //printf("%s\n", token);
+                }
             }
             token = strtok(NULL, s);            
          }
@@ -233,6 +243,10 @@ int main()
 
         
     fclose(ptr_file);
+    
+    /* now print the list */
+    print_list(ListHead);  
+    
     return 0;    
 
 }
