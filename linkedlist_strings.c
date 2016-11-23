@@ -28,16 +28,18 @@ void insert_list(list **l, char* x)
     *l = p;
 }
 
-/*
+
 list *search_list(list *l, char *x)
 {
     if (l == NULL) return (NULL);
     
-    if (l->item == x)
+    if (strcmp(l->item,x) == 0)
         return(l);
     else
         return(search_list(l->next, x));
 }
+
+
 
 void print_list(list *l)
 {
@@ -46,11 +48,12 @@ void print_list(list *l)
         return;
     }
     printf("%p\n", (void *) l);    
-    printf("%d",l->item);
+    printf("%s",l->item);
     printf("\n");   
     return print_list(l->next);
 }
 
+/*
 list *predecessor_list(list *l, char *x)
 {
     //printf("Get predecessor\n");
@@ -130,33 +133,27 @@ void main()
     list *ListHead = NULL; 
     
     /* Print the empty list */
-    /*
     printf("Lets print the list \n");
     print_list(ListHead);   
-    */
-
-    char batman[] = "Batman";
-    char robin[] = "Robin";
-    char joker[] = "Joker";
-
-
+    
     /* Insert a couple of nodes */
-    insert_list(&ListHead, batman);    
+    insert_list(&ListHead, "Batman");    
+    insert_list(&ListHead, "Robin");   
+    insert_list(&ListHead, "Joker");        
      
-     
-        
+    printf("Lets print the list \n");
+    print_list(ListHead);   
+            
     /* Try searching the list */
     
-    /*
+    
     printf("Try searching the list \n");
-    list *SevenNode = search_list(ListHead, 7);
-    SevenNode = search_list(ListHead, 7);    
+    list *SevenNode = search_list(ListHead, "Batman");
     printf("%p\n", (void *) SevenNode);
-    SevenNode = search_list(ListHead, 6);
-    printf("%p\n", (void *) SevenNode);  
-    SevenNode = search_list(ListHead, 4);
-    printf("%p\n", (void *) SevenNode);   
-    */
+    SevenNode = search_list(ListHead, "Green");
+    printf("%p\n", (void *) SevenNode);
+    SevenNode = search_list(ListHead, "Joker");
+    printf("%p\n", (void *) SevenNode);
     
     /* Print the list */
     
