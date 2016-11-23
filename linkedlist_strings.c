@@ -180,7 +180,8 @@ int main()
     list *ListHead = NULL; 
     
 		FILE *ptr_file;
-		int x;
+		int x, i;
+    int isaword = 0;
     
     const char s[100]= ",;. ";
     char *token;
@@ -199,10 +200,34 @@ int main()
         token = strtok(line, s);
         while (token != NULL)
         {
-            printf("%s\n", token);
-            token = strtok(NULL, s);
-        }
-    
+
+            isaword = 0;
+            /* change to lower case */
+            i = 0;
+            while (i < strlen(token))
+            {
+                if (isupper(token[i]))
+                {
+                    token[i] = tolower(token[i]);
+                    isaword = 1;
+                }
+        
+                if (islower(token[i]))
+                {
+                    isaword = 1;
+                }
+        
+                i = i+1;
+            }
+            
+            if (isaword == 1)
+            {
+                printf("%s\n", token);
+            }
+            token = strtok(NULL, s);            
+         }
+        
+        /* are any of the characters letters? */
     
     }  
 
