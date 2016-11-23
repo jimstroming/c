@@ -37,7 +37,7 @@ insert_tree(tree **l, char* x, tree *parent)
     
     if (*l == NULL) {
         p = malloc(sizeof(tree));  /* allocate new node */
-        printf("%p\n", (void *) p);      
+        //printf("%p\n", (void *) p);      
         strcpy(p->item, x);
         //p->item = x;
         p->left = p->right = NULL;
@@ -146,7 +146,7 @@ tree *search_tree(tree *l, char* x)
 }
 
 
-void main()
+void oldmain()
 {
 
     tree *MyTree = NULL;
@@ -204,5 +204,85 @@ void main()
     tree *node9999 = search_tree(MyTree, "9999");
     printf("%s",node9999->item); 
     printf("\n");
+
+}
+
+
+int main()
+{
+    tree *MyTree = NULL;
+
+    tree *SearchNode = NULL;
+    
+		FILE *ptr_file;
+		int x, i;
+    int isaword = 0;
+    
+    const char s[100]= ",:;. —-\"”“!?()";
+    char *token;
+
+		ptr_file =fopen("mobydick.txt", "r");
+    
+
+
+		if (!ptr_file)
+			return 1;
+      
+    char line[10000];  
+    while(fgets(line,10000,ptr_file) != NULL)
+    {
+        //printf("%s",line);
+        token = strtok(line, s);
+        while (token != NULL)
+        {
+
+            isaword = 0;
+            /* change to lower case */
+            i = 0;
+            while (i < strlen(token))
+            {
+                if (isupper(token[i]))
+                {
+                    token[i] = tolower(token[i]);
+                    isaword = 1;
+                }
+        
+                if (islower(token[i]))
+                {
+                    isaword = 1;
+                }
+                
+                if(isspace(token[i]))
+                {
+                    token[i] = 0;
+                }
+        
+                i = i+1;
+            }
+            
+            if (isaword == 1)
+            {
+                SearchNode =  search_tree(MyTree, token);
+                //printf("Came out of the search\n");
+                if (SearchNode == NULL)
+                {
+                    insert_tree(&MyTree,token, NULL); 
+                    //printf("%s\n", token);
+                }
+            }
+            token = strtok(NULL, s);            
+         }
+        
+        /* are any of the characters letters? */
+    
+    }  
+
+        
+    fclose(ptr_file);
+    
+    /* now print the list */
+    print_tree(MyTree);  
+    
+    return 0;    
 
 }
