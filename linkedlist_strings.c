@@ -31,6 +31,7 @@ void insert_list(list **l, char* x)
 
 list *search_list(list *l, char *x)
 {
+    printf("Call search_list\n");
     if (l == NULL) return (NULL);
     
     if (strcmp(l->item,x) == 0)
@@ -47,7 +48,7 @@ void print_list(list *l)
         printf("\n");
         return;
     }
-    printf("%p\n", (void *) l);    
+    printf("%p contains ", (void *) l);    
     printf("%s",l->item);
     printf("\n");   
     return print_list(l->next);
@@ -62,32 +63,34 @@ list *predecessor_list(list *l, char *x)
         return(NULL);    
     }
     
-    if (strcmp(l->item,x) == 0)
+    if (strcmp((l->next)->item,x) == 0)
         return(l);
     else
         return(predecessor_list(l->next,x));
 }
 
 
-/*
+
 delete_list(list **l, char *x)
 {
     list *p;            
     list *pred;        
     list *search_list(), *predecessor_list();
     
+    printf("Call delete_list\n");
     p = search_list(*l,x);
     if (p != NULL) {
+        printf("Got a match\n");
         pred = predecessor_list(*l,x);
         if (pred == NULL)  
             *l = p->next;
         else
             pred->next = p->next;
-        printf("Free p\n");
+        printf("Free p=%p\n",(void*)p);
         free(p);            
     }
 }
-*/ 
+ 
  
 list *reverse_node(list *l, list *lastnode)
 {
@@ -158,12 +161,12 @@ void main()
 
     
     /* Delete a node */
-    /*
-    delete_list(&ListHead, 4);  
+    
+    delete_list(&ListHead, "Robin"); 
+    printf("Deleted Robin\n"); 
     print_list(ListHead);  
-    printf("Delete node 7\n");
-    delete_list(&ListHead, 7);
-    printf("Deleted node 7\n");
+    delete_list(&ListHead, "Batman");
+    printf("Deleted Batman\n");
     print_list(ListHead);    
-    */       
+           
 }
