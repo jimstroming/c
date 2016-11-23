@@ -144,26 +144,29 @@ delete_tree(tree **l, int x, tree *parent)
                 ((*l)->right)->parent = parent;
                 *l = (*l)->right;
             }
-
+            
+            free(p);
+            return;            
+            
+        }
+        
+        
         if (numberchildren == 2) { /* two child is the most complicated case */
         
-        
-        
-        }
+            /* find the minimum node on the left subtree */
+            p = find_minimum((*l)->right);
+            int minvalue = p-> item;
+                      
+            /* remove that node */
+            delete_tree(&((*l)->right), minvalue, ((*l)->right)->parent);
             
+            /* give the node we want to remove the value of the node we just removed */
+            (*l)->item = minvalue;
             
-            //print_tree(*l);
-            
-            printf("Now free the node\n");
-            free(p);
             return;
-            
-                       
-        
         }
-        
-        return;                              
-    
+            
+        return;                                 
     }
 
     if (x < (*l)->item)
@@ -219,17 +222,21 @@ void main()
     printf("%p\n", (void *) MyTree);     
     
     
-    delete_tree(&MyTree, 12, NULL);
+    //delete_tree(&MyTree, 12, NULL);
 
-    printf("Delete node 3\n");
-    delete_tree(&MyTree, 3, NULL);
-    delete_tree(&MyTree, 14, NULL);
-    delete_tree(&MyTree, 0, NULL);
-    delete_tree(&MyTree, 1, NULL);
-    delete_tree(&MyTree, 2, NULL);    
+    //printf("Delete node 3\n");
+    //delete_tree(&MyTree, 3, NULL);
+    //delete_tree(&MyTree, 14, NULL);
+    //delete_tree(&MyTree, 0, NULL);
+    //delete_tree(&MyTree, 1, NULL);
+    //delete_tree(&MyTree, 2, NULL);    
     delete_tree(&MyTree, 7, NULL);  
         
     print_tree(MyTree);
+   
+    delete_tree(&MyTree, 10000, NULL);  
+        
+    print_tree(MyTree);   
     
     printf("Search for node 9999\n");
     tree *node9999 = search_tree(MyTree, 9999);
