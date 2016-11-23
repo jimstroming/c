@@ -104,8 +104,8 @@ delete_tree(tree **l, int x, tree *parent)
         
         if (numberchildren == 1){ /* one child, connect the parent and child */
             printf("One child case.\n");
-            if ((*l)->item < parent->item) {
-                printf("If case\n");
+            p = *l;            
+
                 if ((*l)->right == NULL){
                     printf("Left Left case\n");
                     printf("l is at \n");
@@ -122,141 +122,23 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("%p\n", (void *) &((*l)->left));                    
                     printf("*l->right is at \n");
                     printf("%p\n", (void *) &((*l)->right));                    
-                    
-                    printf("parent is at \n");
-                    printf("%p\n", (void *) &parent); 
-                    printf("parent points to \n");
-                    printf("%p\n", (void *) parent); 
-                    
-                    
-                    printf("parent->item is at \n");
-                    printf("%p\n", (void *) &(parent->item));                                                           
-                    printf("parent->left is at \n");
-                    printf("%p\n", (void *) &(parent->left));                    
-                    printf("parent->right is at \n");
-                    printf("%p\n", (void *) &(parent->right));                    
-                    
-                    printf("*l->left points to \n");
-                    printf("%p\n", (void *) ((*l)->left));                     
-                    printf("(*l)->left->item is at \n");
-                    printf("%p\n", (void *) &((*l)->left->item));                     
-                    printf("(*l)->left->left is at \n");
-                    printf("%p\n", (void *) &((*l)->left->left));  
-                    printf("(*l)->left->right is at \n");
-                    printf("%p\n", (void *) &((*l)->left->right));                                          
-                    printf("l is ");
-                    printf("%d",(*l)->item);
-                    printf("\n");        
-                    printf("parent is ");
-                    printf("%d",parent->item);
-                    printf("\n");                            
-                                        
-                    print_tree(*l);  
-                                     
-         
-                  
-                    
-                    //parent->left = (*l)->left;
-                    //tree *kid =  (*l)->left; 
-                    printf("l is at \n");
-                    printf("%p\n", (void *) &l);   
-                    printf("l points to \n");
-                    printf("%p\n", (void *) l);                     
-                    printf("*l points to \n");
-                    printf("%p\n", (void *) (*l));  
-                                                                       
-                    printf("*l->left is at \n");
-                    printf("%p\n", (void *) &((*l)->left));                        
-                    printf("*l->left points to \n");
-                    printf("%p\n", (void *) ((*l)->left)); 
-                    
-                    //printf("kid is at \n");
-                    //printf("%p\n", (void *) &kid);                        
-                    //printf("kid points to \n");
-                    //printf("%p\n", (void *) kid); 
-         
-                    printf("parent is at \n");
-                    printf("%p\n", (void *) &parent); 
-                    printf("parent points to \n");
-                    printf("%p\n", (void *) parent);         
-         
-                       
-                    p = *l;
+                                                            
                     ((*l)->left)->parent = parent;
-                    *l = (*l)->left;
-                    free(p);                      
-                    
-                    //parent->left = kid;
-                    printf("\n");
-                    printf("THE BIG COMMAND\n");
-                    printf("\n");
-                    
-                    printf("l is at \n");
-                    printf("%p\n", (void *) &l);   
-                    printf("l points to \n");
-                    printf("%p\n", (void *) l);                     
-                    printf("*l points to \n");
-                    printf("%p\n", (void *) (*l));  
-                    printf("*l->left is at \n");
-                    printf("%p\n", (void *) &((*l)->left));                      
-                    printf("*l->left points to \n");
-                    printf("%p\n", (void *) ((*l)->left));  
-                    
-                    
-                    printf("l is ");
-                    printf("%d",(*l)->item);  
-                    printf("\n");                                     
-                    //printf("Kid is ");
-                    //printf("\n");
-                    //printf("%d",kid->item);
-                    printf("\n");                    
-                    print_tree(*l);                      
-                    if (parent->left == NULL)
-                        printf("parent left is now NULL\n");  
-                    printf("Parent left is now ");
-                    printf("%d", parent->left->item);
-                    printf("\n");                      
-                    printf("Now set the left node parent\n");
-                    print_tree(*l);                       
-                    printf("Parent is ");
-                    printf("%d",parent->item);
-                    printf("\n");
-                    tree *child = parent->left;
-                    printf("Child is ");
-                    printf("\n");
-                    printf("%d",child->item);
-                    printf("\n");
-                    child->parent = parent;
-                    printf("Left node parent set\n");
-                    printf("child parent is now ");
-                    printf("%d",child->parent->item);
-                    printf("\n");
-                    print_tree(*l);                       
+                    *l = (*l)->left;                 
                 }
                 else{
-                    printf("Right Right case\n");
-                    parent->left = (*l)->right;
+                    printf("Left Right case\n");
                     ((*l)->right)->parent = parent;
+                    *l = (*l)->right;
                 }
-            }
-            else{
-                printf("Else case\n");
-                if ((*l)->right == NULL){
-                    printf("Right Left case\n");                
-                    parent->right = (*l)->left;
-                    ((*l)->left)->parent = parent;
-                }
-                else{
-                    parent->right = (*l)->right;
-                    ((*l)->right)->parent = parent;
-                }
-            }
+
+
             
             
-            print_tree(*l);
+            //print_tree(*l);
             
             printf("Now free the node\n");
-            //free(*l);
+            free(p);
             return;
             
                        
