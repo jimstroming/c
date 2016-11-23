@@ -181,15 +181,27 @@ int main()
     
 		FILE *ptr_file;
 		int x;
+    
+    const char s[100]= ",;. ";
+    char *token;
 
 		ptr_file =fopen("mobydick_excerpt.txt", "r");
+    
+
 
 		if (!ptr_file)
 			return 1;
       
-    char name[10000];  
-    while(fgets(name,10000,ptr_file) != NULL){
-        printf("%s",name);
+    char line[10000];  
+    while(fgets(line,10000,ptr_file) != NULL)
+    {
+        //printf("%s",line);
+        token = strtok(line, s);
+        while (token != NULL)
+        {
+            printf("%s\n", token);
+            token = strtok(NULL, s);
+        }
     
     
     }  
