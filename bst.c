@@ -54,6 +54,19 @@ insert_tree(tree **l, int x, tree *parent)
 }
 
 
+tree *find_minimum(tree *t)
+{
+    tree *min;            /* pointer to minimum */
+    
+    if (t == NULL) return(NULL);
+    
+    min = t;
+    while (min->left != NULL)
+        min = min->left;
+    return(min);       
+}
+
+
 delete_tree(tree **l, int x, tree *parent)
 {
     tree *p;                       /* temporary pointer */
@@ -107,7 +120,7 @@ delete_tree(tree **l, int x, tree *parent)
             p = *l;            
 
             if ((*l)->right == NULL){
-                printf("Left Left case\n");
+                printf("Left case\n");
                 printf("l is at \n");
                 printf("%p\n", (void *) &l);   
                 printf("l points to \n");
@@ -127,12 +140,16 @@ delete_tree(tree **l, int x, tree *parent)
                 *l = (*l)->left;                 
             }
             else{
-                printf("Left Right case\n");
+                printf("Right case\n");
                 ((*l)->right)->parent = parent;
                 *l = (*l)->right;
             }
 
-
+        if (numberchildren == 2) { /* two child is the most complicated case */
+        
+        
+        
+        }
             
             
             //print_tree(*l);
