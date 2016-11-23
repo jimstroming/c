@@ -157,7 +157,7 @@ delete_tree(tree **l, int x, tree *parent)
                   
                     
                     //parent->left = (*l)->left;
-                    tree *kid =  (*l)->left; 
+                    //tree *kid =  (*l)->left; 
                     printf("l is at \n");
                     printf("%p\n", (void *) &l);   
                     printf("l points to \n");
@@ -170,19 +170,23 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("*l->left points to \n");
                     printf("%p\n", (void *) ((*l)->left)); 
                     
-                    printf("kid is at \n");
-                    printf("%p\n", (void *) &kid);                        
-                    printf("kid points to \n");
-                    printf("%p\n", (void *) kid); 
+                    //printf("kid is at \n");
+                    //printf("%p\n", (void *) &kid);                        
+                    //printf("kid points to \n");
+                    //printf("%p\n", (void *) kid); 
          
                     printf("parent is at \n");
                     printf("%p\n", (void *) &parent); 
                     printf("parent points to \n");
                     printf("%p\n", (void *) parent);         
          
-                                          
+                       
+                    p = *l;
+                    ((*l)->left)->parent = parent;
+                    *l = (*l)->left;
+                    free(p);                      
                     
-                    parent->left = kid;
+                    //parent->left = kid;
                     printf("\n");
                     printf("THE BIG COMMAND\n");
                     printf("\n");
@@ -202,9 +206,9 @@ delete_tree(tree **l, int x, tree *parent)
                     printf("l is ");
                     printf("%d",(*l)->item);  
                     printf("\n");                                     
-                    printf("Kid is ");
-                    printf("\n");
-                    printf("%d",kid->item);
+                    //printf("Kid is ");
+                    //printf("\n");
+                    //printf("%d",kid->item);
                     printf("\n");                    
                     print_tree(*l);                      
                     if (parent->left == NULL)
@@ -252,7 +256,7 @@ delete_tree(tree **l, int x, tree *parent)
             print_tree(*l);
             
             printf("Now free the node\n");
-            free(*l);
+            //free(*l);
             return;
             
                        
@@ -316,12 +320,12 @@ void main()
     printf("%p\n", (void *) MyTree);     
     
     
-    delete_tree(&MyTree, 12, NULL);
-    delete_tree(&MyTree, 0, NULL);
-    delete_tree(&MyTree, 1, NULL);
-    delete_tree(&MyTree, 5, NULL);
+    //delete_tree(&MyTree, 12, NULL);
+    //delete_tree(&MyTree, 0, NULL);
+    //delete_tree(&MyTree, 1, NULL);
+    //delete_tree(&MyTree, 5, NULL);
     printf("Delete node 3\n");
-    //delete_tree(&MyTree, 3, NULL);
+    delete_tree(&MyTree, 3, NULL);
 
     print_tree(MyTree);
     
